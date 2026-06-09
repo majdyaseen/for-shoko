@@ -37,14 +37,13 @@
     }
     .particle {
       position: absolute;
-      font-size: 1.1rem;
       opacity: 0;
       animation: float-up linear infinite;
     }
     @keyframes float-up {
       0%   { opacity: 0; transform: translateY(0) rotate(0deg); }
-      10%  { opacity: 0.6; }
-      90%  { opacity: 0.4; }
+      10%  { opacity: 0.55; }
+      90%  { opacity: 0.35; }
       100% { opacity: 0; transform: translateY(-100vh) rotate(360deg); }
     }
 
@@ -94,7 +93,7 @@
       font-weight: 300;
       font-style: italic;
       color: var(--dusty);
-      max-width: 480px;
+      max-width: 500px;
       line-height: 1.6;
       opacity: 0;
       animation: fade-in 1.4s 1s forwards;
@@ -224,12 +223,12 @@
     }
     .timeline-item {
       display: grid;
-      grid-template-columns: 80px 1fr;
+      grid-template-columns: 100px 1fr;
       gap: 1.5rem;
       align-items: start;
     }
     .timeline-date {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--rose);
@@ -291,14 +290,8 @@
     .closing .big-text em {
       color: var(--rose);
     }
-    .closing .signature {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      color: var(--dusty);
-      margin-top: 2rem;
-    }
 
-    /* Floating hearts background text */
+    /* Background watermark */
     .bg-text {
       position: fixed;
       bottom: -2rem;
@@ -314,14 +307,13 @@
     }
 
     @media (max-width: 600px) {
-      .timeline-item { grid-template-columns: 60px 1fr; gap: 1rem; }
+      .timeline-item { grid-template-columns: 70px 1fr; gap: 1rem; }
       .reasons { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Floating particles -->
   <div class="particles" id="particles"></div>
   <div class="bg-text">shoko</div>
 
@@ -329,7 +321,7 @@
   <section class="hero">
     <p class="eyebrow">a letter, long overdue</p>
     <h1 class="title">For <em>Shoko,</em><br>always.</h1>
-    <p class="subtitle">From someone who found the whole world in a Discord DM.</p>
+    <p class="subtitle">From someone who spent almost a year figuring out that you were exactly what he wanted — and hasn't shut up about it since.</p>
     <div class="scroll-hint">read on</div>
   </section>
 
@@ -340,42 +332,39 @@
 
     <!-- Opening -->
     <div class="section">
-      <p class="section-label">the beginning</p>
+      <p class="section-label">where it began</p>
       <p class="prose">
-        It started with a message — just words on a screen. I didn't know then that it would turn into
-        <strong>92,000 messages</strong> and counting. I didn't know you would become the first thing
-        I wanted to talk to in the morning and the last voice I wanted to hear at night.
-        I didn't know yet that you were going to be my favourite person.
+        We started as two people in a DM. No labels, no plan — just talking.
+        And then more talking. And then somehow you became the person I wanted to tell everything to,
+        the one I looked for first whenever something happened, the one whose name on my screen
+        made the whole day better.
+      </p>
+      <br>
+      <p class="prose">
+        It took us a little while to get here. But I think that's what makes it mean something —
+        we didn't rush, and we didn't fake it. We just <em>became</em>.
       </p>
     </div>
 
     <!-- Timeline -->
     <div class="section">
-      <p class="section-label">how it unfolded</p>
+      <p class="section-label">how we got here</p>
       <div class="timeline">
         <div class="timeline-item">
-          <span class="timeline-date">Jun 2025</span>
-          <p class="timeline-text">A new DM. Two strangers talking too fast, laughing too easy, staying up too late. The beginning.</p>
+          <span class="timeline-date">June 2025</span>
+          <p class="timeline-text">A first message. Two strangers, already talking too fast, already staying up too late. The quiet beginning of something neither of us named yet.</p>
         </div>
         <div class="timeline-item">
-          <span class="timeline-date">Jul 2025</span>
-          <p class="timeline-text">You became <em>my girlfriend</em> — and I didn't shut up about it to anyone who would listen. I still haven't.</p>
+          <span class="timeline-date">months of this</span>
+          <p class="timeline-text">Late nights, JJK lore, voice calls, chaos, laughing at nothing and everything. You became my favourite habit without me even noticing.</p>
         </div>
         <div class="timeline-item">
-          <span class="timeline-date">Sep 10</span>
-          <p class="timeline-text">Your eighteenth birthday. I'd been looking forward to it since the day I found out. You deserve every single candle.</p>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-date">Nov 2025</span>
-          <p class="timeline-text">The first time saying <em>I love you</em> felt as easy as breathing. Three words that never felt so light.</p>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-date">Jan 2026</span>
-          <p class="timeline-text">New year, same us — which is exactly what I wanted. Louder, closer, more certain.</p>
+          <span class="timeline-date">May 2026</span>
+          <p class="timeline-text"><strong>Official.</strong> Finally. The word that made everything we already were feel even more real.</p>
         </div>
         <div class="timeline-item">
           <span class="timeline-date">today</span>
-          <p class="timeline-text">Still here. Still yours. Still the luckiest.</p>
+          <p class="timeline-text">Still here. Still yours. Completely certain I made the best decision I've ever made.</p>
         </div>
       </div>
     </div>
@@ -386,31 +375,30 @@
     <div class="section">
       <p class="section-label">what I want you to know</p>
       <p class="prose">
-        Shoko — you are the kind of person who walks into a room, even a digital one, and makes it
-        brighter without trying. You're chaotic and soft and sharp all at once, and somehow that
-        combination is the most beautiful thing I've ever had the privilege of knowing.
+        Shoko — you are chaotic and soft and sharp all at once, and somehow that combination
+        is the most beautiful thing I've ever had the privilege of knowing up close.
+        You say things that make me laugh until I can't breathe, and then in the same conversation
+        you'll say something so genuinely tender that I don't know what to do with myself.
       </p>
       <br>
       <p class="prose">
-        I've watched you fight for yourself on the hard days. I've seen you be kinder to everyone
-        around you than you are to yourself — and I've made it my personal mission to fix that.
-        You deserve every good word you so easily give away.
-      </p>
-      <br>
-      <p class="prose">
-        We've shared late nights and stupid arguments and long silences that weren't awkward at all.
-        We've bonded over JJK lore and food preferences and the chaotic absolute <em>mess</em> that is
-        just us being us. And I would not trade a single second of it.
+        I've watched you on the hard days too. The ones where you're tired and it shows.
+        I've seen how much you carry and how easy you make it look for everyone else.
+        You deserve so much more gentleness than you give yourself.
       </p>
 
       <div class="quote-block">
-        <p>"I want to make you happy."</p>
+        <p>"I want to make you happy." — and I mean it every single time.</p>
       </div>
 
       <p class="prose">
-        That's not just something I said once. It's the quiet background thought behind everything
-        I do when it comes to you. When we talk about honeymoons and futures and where we want
-        to end up — I mean all of it. Every word.
+        That's not a line. It's not something I say to fill silence. It's the thought that sits
+        behind everything — the reason I show up, the reason I stay, the reason we talk about
+        honeymoon destinations like they're already decided. Because for me, they kind of are.
+      </p>
+      <br>
+      <p class="prose">
+        I don't know how to be quiet about the fact that I love you. I'm not going to try.
       </p>
     </div>
 
@@ -422,27 +410,27 @@
       <div class="reasons">
         <div class="reason-card">
           <p class="number">01</p>
-          <p>The way you can be the loudest person in a conversation and still manage to make everyone feel heard.</p>
+          <p>The way you match my energy completely — which is terrifying, wonderful, and exactly what I needed.</p>
         </div>
         <div class="reason-card">
           <p class="number">02</p>
-          <p>You match my energy completely — which is terrifying and wonderful and exactly what I needed.</p>
+          <p>You've been my favourite person to talk to since before I even admitted it. That kind of thing doesn't happen twice.</p>
         </div>
         <div class="reason-card">
           <p class="number">03</p>
-          <p>You let me be proud of you even when you struggle to be proud of yourself.</p>
+          <p>You let me be proud of you even when you struggle to be proud of yourself. I take that job very seriously.</p>
         </div>
         <div class="reason-card">
           <p class="number">04</p>
-          <p>The fact that you stayed. Through the chaos, the distance, the hard months. You stayed.</p>
+          <p>The "MWAH MWAH MWAH"s. Always. Forever. Non-negotiable.</p>
         </div>
         <div class="reason-card">
           <p class="number">05</p>
-          <p>The way saying goodnight to you is the only part of the day that actually feels like an ending.</p>
+          <p>You're the first person I think of when something good happens. That's not something you plan. It just is.</p>
         </div>
         <div class="reason-card">
           <p class="number">06</p>
-          <p>Every single "MWAH" — because somehow they never get old.</p>
+          <p>The fact that saying goodnight to you is the only part of any day that actually feels like an ending.</p>
         </div>
       </div>
     </div>
@@ -453,21 +441,24 @@
     <div class="section">
       <p class="section-label">the part that matters most</p>
       <p class="prose">
-        I am not a person who is good at saying the quiet things out loud. But you have always
-        made it easier. So here it is, written down so you can come back to it whenever you need:
+        We're new at this — the official version of us. But I don't feel new about <em>you</em>.
+        I feel like I've known for a long time, and I've just been waiting for the right moment
+        to say it out loud where it counts.
       </p>
       <br>
       <p class="prose">
-        <strong>I love you.</strong> Not as a reflex or a habit, but as a choice I make every single day
-        and would make a thousand times over. I love you in the calm moments and the chaotic ones.
-        I love you when you're making me laugh and when you make me want to tear my hair out.
-        I love you past all the ways I know how to say it.
+        So here it is. Written down, with a URL, so you can come back to it whenever you need it:
       </p>
       <br>
       <p class="prose">
-        You're going to do incredible things. I don't say that to fill space — I say it because
-        I have watched you and I <em>know</em>. And I am going to be there for every single one of them,
-        cheering the loudest, insufferably proud, completely yours.
+        <strong>I love you.</strong> Not as a reflex. As a choice I make every day and will keep making.
+        I love you in the loud moments and the quiet ones, in the chaos we create together and in
+        the silence that never needs filling. I love you past all the ways I know how to say it.
+      </p>
+      <br>
+      <p class="prose">
+        You are going to do incredible things. I already know. And I am going to be exactly here —
+        embarrassingly proud, loudest in the room, completely yours.
       </p>
     </div>
 
@@ -476,26 +467,26 @@
   <!-- Closing -->
   <div class="closing section">
     <p class="big-text">always<br>and <em>always,</em></p>
-    <p class="prose" style="color: var(--dusty);">Majd 🤍</p>
-    <p class="signature" style="margin-top: 3rem; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: #ccc;">
+    <p class="prose" style="color: var(--dusty); font-size: 1.3rem;">Majd 🤍</p>
+    <p style="margin-top: 3rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: #ccc; font-family: Inter, sans-serif;">
       June 2025 — forever
     </p>
   </div>
 
   <script>
     // Floating particles
-    const emojis = ['✦', '♡', '✧', '·', '⋆', '˚', '✩', '°'];
+    const symbols = ['✦', '♡', '✧', '·', '⋆', '˚', '✩', '°', '⁺'];
     const container = document.getElementById('particles');
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 28; i++) {
       const el = document.createElement('span');
       el.className = 'particle';
-      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
       el.style.left = Math.random() * 100 + '%';
       el.style.bottom = '-2rem';
-      el.style.animationDuration = (8 + Math.random() * 14) + 's';
-      el.style.animationDelay = (Math.random() * 12) + 's';
-      el.style.fontSize = (0.7 + Math.random() * 0.8) + 'rem';
-      el.style.color = ['#c9748a', '#d4a96a', '#9b6b7b', '#e8b4c0'][Math.floor(Math.random() * 4)];
+      el.style.animationDuration = (9 + Math.random() * 14) + 's';
+      el.style.animationDelay = (Math.random() * 14) + 's';
+      el.style.fontSize = (0.65 + Math.random() * 0.75) + 'rem';
+      el.style.color = ['#c9748a', '#d4a96a', '#9b6b7b', '#e8b4c0', '#c4aec9'][Math.floor(Math.random() * 5)];
       container.appendChild(el);
     }
 
@@ -503,11 +494,9 @@
     const sections = document.querySelectorAll('.section');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.12 });
     sections.forEach(s => observer.observe(s));
   </script>
 </body>
