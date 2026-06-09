@@ -9,12 +9,12 @@
 
     :root {
       --ink: #1a1a2e;
-      --blush: #f7e8e8;
-      --rose: #c9748a;
-      --dusty: #9b6b7b;
-      --gold: #d4a96a;
-      --cream: #fdf6f0;
-      --paper: #faf7f4;
+      --blush: #eaf0f7;
+      --rose: #e8819a;
+      --dusty: #7298c9;
+      --gold: #9aaed4;
+      --cream: #f0f4fa;
+      --paper: #faf9fc;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -58,7 +58,7 @@
       justify-content: center;
       text-align: center;
       padding: 2rem;
-      background: radial-gradient(ellipse at 50% 60%, #f9ece8 0%, var(--paper) 70%);
+      background: radial-gradient(ellipse at 35% 60%, rgba(114,152,201,0.12) 0%, rgba(232,129,154,0.1) 65%, var(--paper) 88%);
     }
 
     .eyebrow {
@@ -129,6 +129,15 @@
 
     @keyframes fade-in {
       to { opacity: 1; }
+    }
+
+    .me { color: #7298c9; }
+    .her { color: #e8819a; }
+    .us {
+      background: linear-gradient(90deg, #7298c9, #e8819a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     /* Letter sections */
@@ -252,16 +261,16 @@
     }
     .reason-card {
       background: white;
-      border: 1px solid #f0e6e6;
+      border: 1px solid #dce8f4;
       border-radius: 12px;
       padding: 1.5rem;
-      box-shadow: 0 2px 12px rgba(201, 116, 138, 0.06);
+      box-shadow: 0 2px 12px rgba(114, 152, 201, 0.08);
     }
     .reason-card .number {
       font-family: 'Cormorant Garamond', serif;
       font-size: 2.5rem;
       font-weight: 300;
-      color: #f0d8dd;
+      color: #cddaf0;
       line-height: 1;
       margin-bottom: 0.5rem;
     }
@@ -300,7 +309,7 @@
       font-size: 18vw;
       font-weight: 300;
       font-style: italic;
-      color: rgba(201, 116, 138, 0.04);
+      color: rgba(232, 129, 154, 0.04);
       pointer-events: none;
       z-index: 0;
       user-select: none;
@@ -320,7 +329,7 @@
   <!-- Hero -->
   <section class="hero">
     <p class="eyebrow">a letter, long overdue</p>
-    <h1 class="title">For <em>Shoko,</em><br>always.</h1>
+    <h1 class="title">For <em><span class="her">Shoko,</span></em><br>always.</h1>
     <p class="subtitle">From someone who spent almost a year figuring out that you were exactly what he wanted and hasn't shut up about it since.</p>
     <div class="scroll-hint">read on</div>
   </section>
@@ -375,7 +384,7 @@
     <div class="section">
       <p class="section-label">what I want you to know</p>
       <p class="prose">
-        Shoko, you are chaotic and soft and sharp all at once, and somehow that combination
+        <span class="her">Shoko,</span> you are chaotic and soft and sharp all at once, and somehow that combination
         is the most beautiful thing I've ever had the privilege of knowing up close.
         You say things that make me laugh until I can't breathe, and then in the same conversation
         you'll say something so genuinely tender that I don't know what to do with myself.
@@ -466,7 +475,7 @@
 
   <!-- Closing -->
   <div class="closing section">
-    <p class="big-text">always<br>and <em>always,</em></p>
+    <p class="big-text"><span class="us">always</span><br>and <em><span class="us">always,</span></em></p>
     <p class="prose" style="color: var(--dusty); font-size: 1.3rem;">Majd 🤍</p>
     <p style="margin-top: 3rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: #ccc; font-family: Inter, sans-serif;">
       June 2025 — forever
@@ -486,7 +495,7 @@
       el.style.animationDuration = (9 + Math.random() * 14) + 's';
       el.style.animationDelay = (Math.random() * 14) + 's';
       el.style.fontSize = (0.65 + Math.random() * 0.75) + 'rem';
-      el.style.color = ['#c9748a', '#d4a96a', '#9b6b7b', '#e8b4c0', '#c4aec9'][Math.floor(Math.random() * 5)];
+      el.style.color = ['#e8819a', '#7298c9', '#b4c9e8', '#f0c4cc', '#c4d4f0'][Math.floor(Math.random() * 5)];
       container.appendChild(el);
     }
 
