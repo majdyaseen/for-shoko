@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Shoko, always.</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400&display=swap');
+
+    :root {
+      --ink: #1a1a2e;
+      --blush: #f7e8e8;
+      --rose: #c9748a;
+      --dusty: #9b6b7b;
+      --gold: #d4a96a;
+      --cream: #fdf6f0;
+      --paper: #faf7f4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Floating particles */
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      font-size: 1.1rem;
+      opacity: 0;
+      animation: float-up linear infinite;
+    }
+    @keyframes float-up {
+      0%   { opacity: 0; transform: translateY(0) rotate(0deg); }
+      10%  { opacity: 0.6; }
+      90%  { opacity: 0.4; }
+      100% { opacity: 0; transform: translateY(-100vh) rotate(360deg); }
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background: radial-gradient(ellipse at 50% 60%, #f9ece8 0%, var(--paper) 70%);
+    }
+
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--dusty);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fade-in 1.2s 0.3s forwards;
+    }
+
+    .title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--ink);
+      opacity: 0;
+      animation: fade-in 1.4s 0.6s forwards;
+    }
+    .title em {
+      font-style: italic;
+      color: var(--rose);
+    }
+
+    .subtitle {
+      margin-top: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--dusty);
+      max-width: 480px;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fade-in 1.4s 1s forwards;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--dusty);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fade-in 1s 2s forwards;
+    }
+    .scroll-hint::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--rose), transparent);
+      animation: pulse-line 2s ease-in-out infinite;
+    }
+    @keyframes pulse-line {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    @keyframes fade-in {
+      to { opacity: 1; }
+    }
+
+    /* Letter sections */
+    .letter {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    .divider {
+      text-align: center;
+      margin: 4rem 0 3rem;
+      position: relative;
+    }
+    .divider::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--rose), transparent);
+    }
+    .divider span {
+      position: relative;
+      background: var(--paper);
+      padding: 0 1rem;
+      color: var(--rose);
+      font-size: 1.2rem;
+    }
+
+    .section {
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    .prose {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+      line-height: 1.85;
+      font-weight: 300;
+      color: #2d2d3e;
+    }
+    .prose strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .prose em {
+      font-style: italic;
+      color: var(--dusty);
+    }
+
+    /* Quote blocks */
+    .quote-block {
+      border-left: 2px solid var(--rose);
+      padding: 1rem 1.5rem;
+      margin: 2rem 0;
+      background: var(--blush);
+      border-radius: 0 8px 8px 0;
+    }
+    .quote-block p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--dusty);
+      line-height: 1.7;
+    }
+
+    /* Timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .timeline-date {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rose);
+      font-family: 'Inter', sans-serif;
+      padding-top: 0.25rem;
+    }
+    .timeline-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #2d2d3e;
+    }
+
+    /* Reasons grid */
+    .reasons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .reason-card {
+      background: white;
+      border: 1px solid #f0e6e6;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 12px rgba(201, 116, 138, 0.06);
+    }
+    .reason-card .number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: #f0d8dd;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .reason-card p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: #3a3a4e;
+    }
+
+    /* Closing */
+    .closing {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+    }
+    .closing .big-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    .closing .big-text em {
+      color: var(--rose);
+    }
+    .closing .signature {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--dusty);
+      margin-top: 2rem;
+    }
+
+    /* Floating hearts background text */
+    .bg-text {
+      position: fixed;
+      bottom: -2rem;
+      right: -2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18vw;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(201, 116, 138, 0.04);
+      pointer-events: none;
+      z-index: 0;
+      user-select: none;
+    }
+
+    @media (max-width: 600px) {
+      .timeline-item { grid-template-columns: 60px 1fr; gap: 1rem; }
+      .reasons { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating particles -->
+  <div class="particles" id="particles"></div>
+  <div class="bg-text">shoko</div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <p class="eyebrow">a letter, long overdue</p>
+    <h1 class="title">For <em>Shoko,</em><br>always.</h1>
+    <p class="subtitle">From someone who found the whole world in a Discord DM.</p>
+    <div class="scroll-hint">read on</div>
+  </section>
+
+  <!-- Letter body -->
+  <div class="letter">
+
+    <div class="divider"><span>✦</span></div>
+
+    <!-- Opening -->
+    <div class="section">
+      <p class="section-label">the beginning</p>
+      <p class="prose">
+        It started with a message — just words on a screen. I didn't know then that it would turn into
+        <strong>92,000 messages</strong> and counting. I didn't know you would become the first thing
+        I wanted to talk to in the morning and the last voice I wanted to hear at night.
+        I didn't know yet that you were going to be my favourite person.
+      </p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="section">
+      <p class="section-label">how it unfolded</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-date">Jun 2025</span>
+          <p class="timeline-text">A new DM. Two strangers talking too fast, laughing too easy, staying up too late. The beginning.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">Jul 2025</span>
+          <p class="timeline-text">You became <em>my girlfriend</em> — and I didn't shut up about it to anyone who would listen. I still haven't.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">Sep 10</span>
+          <p class="timeline-text">Your eighteenth birthday. I'd been looking forward to it since the day I found out. You deserve every single candle.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">Nov 2025</span>
+          <p class="timeline-text">The first time saying <em>I love you</em> felt as easy as breathing. Three words that never felt so light.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">Jan 2026</span>
+          <p class="timeline-text">New year, same us — which is exactly what I wanted. Louder, closer, more certain.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">today</span>
+          <p class="timeline-text">Still here. Still yours. Still the luckiest.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"><span>✦</span></div>
+
+    <!-- Main letter -->
+    <div class="section">
+      <p class="section-label">what I want you to know</p>
+      <p class="prose">
+        Shoko — you are the kind of person who walks into a room, even a digital one, and makes it
+        brighter without trying. You're chaotic and soft and sharp all at once, and somehow that
+        combination is the most beautiful thing I've ever had the privilege of knowing.
+      </p>
+      <br>
+      <p class="prose">
+        I've watched you fight for yourself on the hard days. I've seen you be kinder to everyone
+        around you than you are to yourself — and I've made it my personal mission to fix that.
+        You deserve every good word you so easily give away.
+      </p>
+      <br>
+      <p class="prose">
+        We've shared late nights and stupid arguments and long silences that weren't awkward at all.
+        We've bonded over JJK lore and food preferences and the chaotic absolute <em>mess</em> that is
+        just us being us. And I would not trade a single second of it.
+      </p>
+
+      <div class="quote-block">
+        <p>"I want to make you happy."</p>
+      </div>
+
+      <p class="prose">
+        That's not just something I said once. It's the quiet background thought behind everything
+        I do when it comes to you. When we talk about honeymoons and futures and where we want
+        to end up — I mean all of it. Every word.
+      </p>
+    </div>
+
+    <div class="divider"><span>✦</span></div>
+
+    <!-- Reasons -->
+    <div class="section">
+      <p class="section-label">a few of the reasons</p>
+      <div class="reasons">
+        <div class="reason-card">
+          <p class="number">01</p>
+          <p>The way you can be the loudest person in a conversation and still manage to make everyone feel heard.</p>
+        </div>
+        <div class="reason-card">
+          <p class="number">02</p>
+          <p>You match my energy completely — which is terrifying and wonderful and exactly what I needed.</p>
+        </div>
+        <div class="reason-card">
+          <p class="number">03</p>
+          <p>You let me be proud of you even when you struggle to be proud of yourself.</p>
+        </div>
+        <div class="reason-card">
+          <p class="number">04</p>
+          <p>The fact that you stayed. Through the chaos, the distance, the hard months. You stayed.</p>
+        </div>
+        <div class="reason-card">
+          <p class="number">05</p>
+          <p>The way saying goodnight to you is the only part of the day that actually feels like an ending.</p>
+        </div>
+        <div class="reason-card">
+          <p class="number">06</p>
+          <p>Every single "MWAH" — because somehow they never get old.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"><span>✦</span></div>
+
+    <!-- Closing letter section -->
+    <div class="section">
+      <p class="section-label">the part that matters most</p>
+      <p class="prose">
+        I am not a person who is good at saying the quiet things out loud. But you have always
+        made it easier. So here it is, written down so you can come back to it whenever you need:
+      </p>
+      <br>
+      <p class="prose">
+        <strong>I love you.</strong> Not as a reflex or a habit, but as a choice I make every single day
+        and would make a thousand times over. I love you in the calm moments and the chaotic ones.
+        I love you when you're making me laugh and when you make me want to tear my hair out.
+        I love you past all the ways I know how to say it.
+      </p>
+      <br>
+      <p class="prose">
+        You're going to do incredible things. I don't say that to fill space — I say it because
+        I have watched you and I <em>know</em>. And I am going to be there for every single one of them,
+        cheering the loudest, insufferably proud, completely yours.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Closing -->
+  <div class="closing section">
+    <p class="big-text">always<br>and <em>always,</em></p>
+    <p class="prose" style="color: var(--dusty);">Majd 🤍</p>
+    <p class="signature" style="margin-top: 3rem; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: #ccc;">
+      June 2025 — forever
+    </p>
+  </div>
+
+  <script>
+    // Floating particles
+    const emojis = ['✦', '♡', '✧', '·', '⋆', '˚', '✩', '°'];
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
+      const el = document.createElement('span');
+      el.className = 'particle';
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = Math.random() * 100 + '%';
+      el.style.bottom = '-2rem';
+      el.style.animationDuration = (8 + Math.random() * 14) + 's';
+      el.style.animationDelay = (Math.random() * 12) + 's';
+      el.style.fontSize = (0.7 + Math.random() * 0.8) + 'rem';
+      el.style.color = ['#c9748a', '#d4a96a', '#9b6b7b', '#e8b4c0'][Math.floor(Math.random() * 4)];
+      container.appendChild(el);
+    }
+
+    // Scroll-triggered reveals
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+    sections.forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>
